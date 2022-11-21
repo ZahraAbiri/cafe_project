@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>student</title>
+</head>
+<body>
+<form action="http://localhost:5000/" method="POST">
+    <p>Name <input type="text" name="Name"/></p>
+    <p>family <input type="text" name="family"/></p>
+    <p><input type="submit" value="submit"/></p>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+</form>
+</body>
+</html>
