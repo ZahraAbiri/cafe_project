@@ -1,78 +1,80 @@
-import psycopg2
-from sqlalchemy import Column, Integer, String, Date
-from sqlalchemy import create_engine, ForeignKey
+from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import session
+
+
+from models.mdels import Menu_item,Comments,Customer,Categories
 
 engine = create_engine('postgresql://postgres:123456@127.0.0.1:5432/resturant')
 base = declarative_base()
 session = session.sessionmaker(bind=engine)()
-
-
-class Comments(base):
-    __tablename__ = 'comments'
-    _id = Column('id', Integer, unique=True, primary_key=True)
-    description = Column('description', String(255))
-    date = Column('date', Date)
-    cus_id = Column('customer_id', Integer, ForeignKey('customer.customer_id'), nullable=True)
-
-
-class Customer(base):
-    __tablename__ = 'customer'
-    _id = Column('customer_id', Integer, unique=True, primary_key=True, nullable=False)
-    name = Column('name', String(100))
-    family = Column('family', String(100))
-    phone_number = Column('phone_number', String(10))
-    username = Column('username', String(20))
-    password = Column('password', String(8))
-
-
-class Tables(base):
-    __tablename__ = 'tables'
-    _id = Column('table_id', Integer, unique=True, primary_key=True)
-    position = Column('position', String(255))
-    number = Column('number', Integer)
-
-
-class Menu_item(base):
-    __tablename__ = 'menu_item'
-    _id = Column('menu_item_id', Integer, unique=True, primary_key=True)
-    name = Column('name', String(50))
-    price = Column('price', Integer)
-    category = Column('category_id', Integer, ForeignKey('categories.id'), nullable=True)
-
-
-class Orders(base):
-    __tablename__ = 'orders'
-    _id = Column('order_id', Integer, unique=True, primary_key=True)
-    number = Column('number', Integer)
-    status = Column('status', String(50))
-    date = Column('date', Date)
-    tbl_id = Column('table_id', Integer, ForeignKey('tables.table_id'), nullable=True)
-
-
-class Recipt(base):
-    __tablename__ = 'recipt'
-    _id = Column('id', Integer, unique=True, primary_key=True)
-    name = Column('name', String(50))
-    total_price = Column('total_price', Integer)
-    # total_price_discount = Column('total_price', Integer) todo
-    date = Column('date', Date)
-    order_id = Column('order_id', Integer, ForeignKey('orders.order_id'), nullable=True)
-
-
-class Order_menu_items(base):
-    __tablename__ = 'order_menu_items'
-    _id = Column('id', Integer, unique=True, primary_key=True)
-    order_id = Column('order_id', Integer, ForeignKey('orders.order_id'), nullable=True)
-    menu_item_id = Column('menu_item_id', Integer, ForeignKey('menu_item.menu_item_id'), nullable=True)
-    number = Column('number', Integer)
-
-
-class Categories(base):
-    __tablename__ = 'categories'
-    _id = Column('id', Integer, unique=True, primary_key=True)
-    name = Column('name', String(50))
-
-
 base.metadata.create_all(engine)
+
+
+def add(student):
+    session.add(student)
+    session.commit()
+
+
+def select_comment():
+    comment = session.query(Comments).all()
+    return comment
+
+
+def select_dinner():
+    dinner = session.query(Menu_item).filter(Menu_item.category == 2).all()
+    return dinner
+
+
+def select_lunch():
+    lunch = session.query(Menu_item).filter(Menu_item.category == 1).all()
+    return lunch
+
+
+def select_deserts():
+    desert = session.query(Menu_item).filter(Menu_item.category == 3).all()
+    return desert
+
+
+def select_drink():
+    drink = session.query(Menu_item).filter(Menu_item.category == 4).all()
+    return drink
+
+
+def select_breakfast():
+    breakfast = session.query(Menu_item).filter(Menu_item.category == 6).all()
+    return breakfast
+
+
+def select_salad():
+    salad = session.query(Menu_item).filter(Menu_item.category == 5).all()
+    return salad
+
+
+def save_comment(comment):
+    session.add(comment)
+    session.commit()
+
+
+def delete_menu_items(id):
+    session.query(Menu_item).filter(Menu_item._id == id).delete()
+    session.commit()
+
+
+def update_menu_items(id,name,price,description):
+    updateMenuItem = session.query(Menu_item).filter(Menu_item._id == id).first()
+    updateMenuItem.name=name
+    updateMenuItem.name=price
+    updateMenuItem.name=description
+    session.commit()
+
+def get_menu_item():
+    menu_item = session.query(Menu_item).all()
+    return menu_item
+
+def add_menu_items(result):
+    category = session.query(Categories).filter(Categories.name == result.get('categories')).first()
+    menu_item = Menu_item(name=result.get('newname'), price=result.get('price'), description=result.get('description'),
+                     category=category._id)
+    session.add(menu_item)
+    session.commit()
