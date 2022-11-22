@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=table" class="body-wrap">
+    <link rel="stylesheet" href="../static/recipt.css">
+
+    <title>recipt</title>
+</head>
+<body>
+
+    <div class="container" width="600">
+        <div class="content">
+            <table class="main" width="100%">
+                <tbody>
+                <tr>
+                    <td class="content-wrap aligncenter">
+                        <table width="100%">
+                            <tbody>
+                            <tr>
+                                <td class="content-block">
+                                    <h2>Thank you for choosing<br> Northstreet restaurant</h2>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="content-block">
+                                    <table class="invoice">
+                                    {% if data %}
+                                    {% for r in data %}
+                                        <tbody>
+                                        <tr>
+
+                                            <td>Id :{{ r._id }}<br>Number : {{ r.number }}
+                                                <br>Date : {{ r.date }}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table class="invoice-items">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>Service 1</td>
+                                                        <td class="alignright">$ 20.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Service 2</td>
+                                                        <td class="alignright">$ 10.00</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Service 3</td>
+                                                        <td class="alignright">$ 6.00</td>
+                                                    </tr>
+                                                    <tr class="total">
+                                                        <td class="alignright" width="80%">Total Price</td>
+                                                        <td class="alignright">$ {{ r.total_price }}</td>
+                                                    </tr>
+                                                    </tbody>
+
+                                                </table>
+
+                                            </td>
+                                        </tr>
+
+                                    {% endfor %}
+                                    {% endif %}
+
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="content-block">
+                                    Northstreet Restaurant, San Francisco 94102
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="footer">
+                <table width="100%">
+                </table>
+        
+            </div>
+        </div>
+    </div>
+    
+</tr>
+
+</body>
+</html>
