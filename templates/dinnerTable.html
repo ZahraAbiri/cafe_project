@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/dinnerTable.css">
+</head>
+
+<body>
+<div style="width: 20%">
+    <div id="table-wrapper">
+        <div class="chair chair-lg"></div>
+        <div class="chair left"></div>
+        <div class="chair left"></div>
+        <div class="chair right"></div>
+        <div class="chair right"></div>
+        <div class="chair chair-lg"></div>
+
+        <div class="the-table">
+            <div id="tableNumber" >
+               <p style="transform: rotate(90deg);margin-left: 90%;color: #0aecd1;font-weight: bold;">N.101</p>
+                <!--      data  get from api-->
+            </div>
+
+            <div class="plate">
+                <div class="knife"></div>
+                <div class="fork"></div>
+            </div>
+            <div class="plate">
+                <div class="knife"></div>
+                <div class="fork"></div>
+            </div>
+            <div class="plate">
+                <div class="knife"></div>
+                <div class="fork"></div>
+            </div>
+
+
+                        <div class="plate">
+                            <div class="knife"></div>
+                            <div class="fork"></div>
+                        </div>
+                        <div class="plate">
+                            <div class="knife"></div>
+                            <div class="fork"></div>
+                        </div>
+<!--                        <div class="plate">-->
+<!--                            <div class="knife"></div>-->
+<!--                            <div class="fork"></div>-->
+<!--                        </div>-->
+            <div >
+                <!--    data  get from api-->
+
+                <button id="myBtn" style="transform: rotate(90deg);">order</button>
+                <div id="myModel" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times</span>
+                        <div id="test">
+                            <form action="">
+                                <label for="name1">name</label>
+                                <input type="text" name="name" id="name1" placeholder="first food name">
+                                <label for="count1">count1</label>
+                                <input type="text" name="count" id="count1">
+                                <label for="country"></label>
+                                <select id="country">
+                                    <option value="a">a</option>
+                                    <option value="b">b</option>
+                                    <option value="c">c</option>
+                                </select>
+                                <label for="count2">count2</label>
+                                <input type="number" name="count2" id="count2">
+                                <input type="submit" value="submit">
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--          data get from api-->
+
+            <button style="transform: rotate(90deg);margin-left: 5%" class="popup" onclick="myFunc()">see orders
+                <span class="popuptext" id="mypopup">Licensed to Happy New Year
+                                        You have a perpetual fallback license for this version.
+                                            Subscription is active until December 31, 2099</span>
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+
+    function myFunc() {
+        var popup = document.getElementById('mypopup');
+        popup.classList.toggle("show")
+    }
+
+    var modal = document.getElementById("myModel");
+    var btn = document.getElementById("myBtn");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function () {
+        modal.style.display = "block"
+    }
+    span.onclick = function () {
+        modal.style.display = "none"
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none"
+        }
+    }
+</script>
+</body>
+</html>
