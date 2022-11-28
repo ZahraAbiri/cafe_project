@@ -1,0 +1,113 @@
+.o {
+  position: relative;
+  width: 1em;
+  height: 1em;
+  color: hsl( calc( 10 - var(--dcr) * 30 ), 93%, 60% );
+}
+.o::before {
+  content: "";
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background-color: currentcolor;
+  transform-origin: calc(var(--ndx) * 100%) 50%;
+  transform: scale(var(--size));
+  -webkit-animation: linear infinite alternate;
+          animation: linear infinite alternate;
+  -webkit-animation-name: var(--animation-name, oa);
+          animation-name: var(--animation-name, oa);
+  -webkit-animation-duration: var(--animation-duration);
+          animation-duration: var(--animation-duration);
+  -webkit-animation-delay: calc(var(--size) * var(--animation-duration) * -1);
+          animation-delay: calc(var(--size) * var(--animation-duration) * -1);
+  -webkit-animation-play-state: var(--animation-play-state, paused);
+          animation-play-state: var(--animation-play-state, paused);
+}
+@-webkit-keyframes oa {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes oa {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.oo {
+  display: grid;
+  grid-template-columns: repeat(var(--col), 1fr);
+  grid-gap: 0.15em;
+  padding: 1.25em 0 1em;
+}
+
+.ooo {
+  --animation-duration: 2s;
+  padding: 1.75em 2em;
+  font-size: 2rem;
+  font-size: calc(.6rem + 2vmin);
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0.1em 0.25em 0.35em rgba(0, 0, 0, 0.3), 0.1em 0.35em 0.8em rgba(0, 0, 0, 0.5);
+}
+.ooo .title {
+  font-size: 1.8em;
+}
+.ooo .footer {
+  font-size: 2em;
+  text-align: right;
+}
+.ooo:hover {
+  --animation-play-state: running;
+}
+.ooo:active {
+  --animation-name: gg;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 100vh;
+  padding-top: 2rem;
+  margin: 0;
+  background-image: linear-gradient(45deg, #f7317c, #f7b024);
+}
+
+.info {
+  align-self: flex-end;
+  margin: 3rem 1rem 1rem;
+  text-align: right;
+  font-size: 0.85em;
+  font-style: italic;
+  font-family: serif;
+  opacity: 0.75;
+}
+.info a {
+  color: inherit;
+}
+.info .tip {
+  font-style: normal;
+  font-size: 1rem;
+}
+.info .tip kbd {
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 2px 5px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
