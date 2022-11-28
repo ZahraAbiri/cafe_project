@@ -31,3 +31,16 @@ def cashier():
                            item_number = number_of_items ,
                            price = total,
                            data = data)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
+@app.route("/home")
+def get():
+    return render_template("home.html")
+
+@app.route("/hover")
+def show_order():
+    data = load_order(1)
+    return render_template("hover.html" , data = data )

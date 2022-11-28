@@ -30,5 +30,10 @@ def bring_data(table_name):
 #     if name == 'pizza':
 #         return '01.png'
 
-
+def load_order(restaurant_table_number):
+    data = session.query(Orders).filter(Orders.tbl_id == restaurant_table_number).first()
+    return data
 # print(bring_data(Menu_item))
+
+x = load_order(1)
+print(x.status)

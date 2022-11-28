@@ -59,6 +59,7 @@ class Orders(base):
     date = Column('date', Date)
     tbl_id = Column('table_id', Integer, ForeignKey('tables.table_id'), nullable=True)
 
+# order1 = Orders(number = 20, status = 'pending', tbl_id = )
 
 class Recipt(base):
     __tablename__ = 'recipt'
