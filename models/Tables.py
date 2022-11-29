@@ -1,5 +1,15 @@
-from core.db_manager import base,Column, Integer, String,engine,relationship
+# from core.db_manager import base,Column, Integer, String,engine,relationship
+import psycopg2
+from sqlalchemy import create_engine, ForeignKey
+from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import session, relationship, backref
 
+from core.db_manager import engine
+
+base = declarative_base()
+session = session.sessionmaker(bind=engine)()
+base.metadata.create_all(engine)
 
 class Tables(base):
     __tablename__ = 'tables'
