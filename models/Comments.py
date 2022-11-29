@@ -1,11 +1,20 @@
-from core.db_manager import base,Column, Integer, String, Date,ForeignKey,engine,session
+# from core.db_manager import base,Column, Integer, String, Date,ForeignKey,engine,session
+import psycopg2
+from sqlalchemy import create_engine, ForeignKey
+from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import session
 
+from core.db_manager import engine
+
+base = declarative_base()
+session = session.sessionmaker(bind=engine)()
+base.metadata.create_all(engine)
 class Comments(base):
     __tablename__ = 'comments'
     _id = Column('id', Integer, unique=True, primary_key=True)
     description = Column('description', String(255))
     date = Column('date', Date)
-    cus_id = Column('user_id', Integer, ForeignKey('customer.customer_id'), nullable=True)
     name = Column('name', String(100))
     family = Column('family', String(100))
     phone_number = Column('phone_number', String(10))

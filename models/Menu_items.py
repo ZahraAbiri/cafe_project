@@ -1,7 +1,17 @@
+import psycopg2
+from sqlalchemy import create_engine, ForeignKey
+from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import session, relationship, backref
+
+from core.db_manager import engine
+
+from models.Category import Categories
+
+base = declarative_base()
+session = session.sessionmaker(bind=engine)()
 
 
-from core.db_manager import base, Column, Integer, String, ForeignKey, session, engine,relationship,backref
-from models import Categories
 
 
 class Menu_item(base):
@@ -10,9 +20,7 @@ class Menu_item(base):
     name = Column('name', String(50))
     price = Column('price', Integer)
     category = Column('category_id', Integer, ForeignKey('categories.id'), nullable=True)
-    category_parent = relationship("Categories", backref=backref("menu_item", uselist=False))
     description = Column('description', String(255))
-    menuItem_parents = relationship("Order_menu_items", backref=backref("menuItem_parent", uselist=False))
 
     def __str__(self):
         return f'name:{self.name},price:{self.price},description:{self.description}'
@@ -22,12 +30,12 @@ base.metadata.create_all(engine)
 
 
 def select_dinner():
-    dinner = session.query(Menu_item).filter(Menu_item.category == 2).all()
+    dinner = session.query(Menu_item).filter(Menu_item.category == 1).all()
     return dinner
 
 
 def select_lunch():
-    lunch = session.query(Menu_item).filter(Menu_item.category == 1).all()
+    lunch = session.query(Menu_item).filter(Menu_item.category == 2).all()
     return lunch
 
 

@@ -1,4 +1,13 @@
-from core.db_manager import base, Column, Integer, String, engine
+# from core.db_manager import base, Column, Integer, String, engine
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import session
+
+from core.db_manager import engine
+
+base = declarative_base()
+session = session.sessionmaker(bind=engine)()
+base.metadata.create_all(engine)
 
 
 class User(base):
@@ -13,3 +22,20 @@ class User(base):
 
 
 base.metadata.create_all(engine)
+
+
+def signIn(result):
+    users = User(name=result.get('name'), family=result.get('family'), phone_number=result.get('phone')
+                 , password=result.get('password'), username=result.get('username'))
+    session.add(users)
+    session.commit()
+
+
+def find_user(result):
+    user = session.query(User).filter(User.username == result.get('userid') ,
+                                      User.password == result.get('passw')).first()
+
+    if user is not None:
+        return True
+    else:
+        return False

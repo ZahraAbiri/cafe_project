@@ -26,14 +26,14 @@
                 <div class="knife"></div>
                 <div class="fork"></div>
             </div>
-            <div class="plate">
-                <div class="knife"></div>
-                <div class="fork"></div>
-            </div>
-            <div class="plate">
-                <div class="knife"></div>
-                <div class="fork"></div>
-            </div>
+<!--            <div class="plate">-->
+<!--                <div class="knife"></div>-->
+<!--                <div class="fork"></div>-->
+<!--            </div>-->
+<!--            <div class="plate">-->
+<!--                <div class="knife"></div>-->
+<!--                <div class="fork"></div>-->
+<!--            </div>-->
 
 
                         <div class="plate">
@@ -56,14 +56,16 @@
                     <div class="modal-content">
                         <span class="close">&times</span>
                         <div id="test">
-                            <form action="">
+                            <form >
                                 <label for="name1">name</label>
                                 <input type="text" name="name" id="name1" placeholder="first food name">
                                 <label for="count1">count1</label>
                                 <input type="text" name="count" id="count1">
                                 <label for="country"></label>
+<!--                                get diiner -->
                                 <select id="country">
-                                    <option value="a">a</option>
+<!--                                    for-->
+                                    <option value="a">{{menu.}}</option>
                                     <option value="b">b</option>
                                     <option value="c">c</option>
                                 </select>
@@ -91,6 +93,7 @@
     function myFunc() {
         var popup = document.getElementById('mypopup');
         popup.classList.toggle("show")
+    //    call api
     }
 
     var modal = document.getElementById("myModel");
