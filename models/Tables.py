@@ -9,7 +9,7 @@ from core.db_manager import engine
 
 base = declarative_base()
 session = session.sessionmaker(bind=engine)()
-base.metadata.create_all(engine)
+
 
 class Tables(base):
     __tablename__ = 'tables'

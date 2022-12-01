@@ -9,7 +9,8 @@ from core.db_manager import engine
 
 base = declarative_base()
 session = session.sessionmaker(bind=engine)()
-base.metadata.create_all(engine)
+from models.Orders import Orders
+
 
 class Recipt(base):
     __tablename__ = 'recipt'
@@ -18,7 +19,7 @@ class Recipt(base):
     total_price = Column('total_price', Integer)
     # total_price_discount = Column('total_price', Integer) todo
     date = Column('date', Date)
-    order_id = Column('order_id', Integer, ForeignKey('orders.order_id'), nullable=True)
+    order_id = Column('order_id', Integer, ForeignKey(Orders._id), nullable=True)
 
 
 base.metadata.create_all(engine)

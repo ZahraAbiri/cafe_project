@@ -12,5 +12,6 @@ from view.commentsView import home
 from view.menuItemView import add_menu_items,delete_menu_item,update_menu_items
 from  view.signinView import user_sign_in
 from  view.loginView import user_log_in
+from  view.getOrdersView import tables_order
 
 app.run(debug=True)

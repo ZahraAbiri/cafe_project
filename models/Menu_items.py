@@ -1,16 +1,16 @@
-import psycopg2
-from sqlalchemy import create_engine, ForeignKey
-from sqlalchemy import Column, Integer, String, Date
+from psycopg2 import Date
+from sqlalchemy import Column, Integer, String
+from sqlalchemy import ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import session, relationship, backref
+from sqlalchemy.orm import session, relationship
 
 from core.db_manager import engine
 
 from models.Category import Categories
 
+
 base = declarative_base()
 session = session.sessionmaker(bind=engine)()
-
 
 
 
@@ -19,11 +19,15 @@ class Menu_item(base):
     _id = Column('menu_item_id', Integer, unique=True, primary_key=True)
     name = Column('name', String(50))
     price = Column('price', Integer)
-    category = Column('category_id', Integer, ForeignKey('categories.id'), nullable=True)
+    category = Column('category_id', Integer, ForeignKey(Categories._id), nullable=True)
     description = Column('description', String(255))
 
     def __str__(self):
         return f'name:{self.name},price:{self.price},description:{self.description}'
+
+    @property
+    def id(self):
+        return self._id
 
 
 base.metadata.create_all(engine)
@@ -75,7 +79,6 @@ def update_menu_items(id, name, price, description):
 def get_menu_item():
     menu_item = session.query(Menu_item).all()
     return menu_item
-
 
 def add_menu_items(result):
     category = session.query(Categories).filter(Categories.name == result.get('categories')).first()
