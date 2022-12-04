@@ -12,7 +12,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="../static/js/lunchTable.js"></script>
     <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
-<!--    <script src="path-para-seu-script"></script>-->
+    <!--    <script src="path-para-seu-script"></script>-->
 </head>
 <body>
 <div id="basliq"><h2>table reservation</h2></div>
@@ -90,13 +90,48 @@
         <p></p><br/>
         <button class="hesab" id="sum">Calculate</button>
         <button class="hesab" id="close">Close the order</button>
+
     </div>
     <h5> Tip: Before adding a food or drink select the table. You can add any number of items. For deleting added item
         just click on it. Before closing order first calculate it, then close :) </h5>
 </div>
 
 <div class="clear"></div>
+<button id="btnn" class="btnselect" onclick="a()">save</button>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    // let x = {
+    //     i: "gfgfg"
+    // }
+    // $(".btnselect").click(function () {
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: "https://localhost:5000/tables",
+    //         data: x,
+    //         contentType: 'application/json'
+    //
+    //     })
+    // })
 
+
+    function a() {
+        let orders = localStorage.getItem("orders")
+        let tableId = localStorage.getItem("tableId")
+        let price = localStorage.getItem("sum")
+        let data = {
+            o: orders,
+            t: tableId,
+            p: price
+        }
+        alert(JSON.stringify(data))
+        axios.post("http://localhost:5000/tab", JSON.stringify(data)).then((res) => {
+            res.data
+        })
+        alert("after")
+    }
+
+
+</script>
 </body>
 </html>
 
