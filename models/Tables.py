@@ -7,6 +7,7 @@ from sqlalchemy.orm import session, relationship, backref
 
 from core.db_manager import engine
 
+
 base = declarative_base()
 session = session.sessionmaker(bind=engine)()
 
@@ -16,7 +17,8 @@ class Tables(base):
     _id = Column('table_id', Integer, unique=True, primary_key=True)
     position = Column('position', String(255))
     number = Column('number', Integer)
-    order=relationship('Orders',backref='for order id')
+    # order_id = Column('order_id', Integer, ForeignKey(Orders._id), nullable=True)
+
 #
 base.metadata.create_all(engine)
 

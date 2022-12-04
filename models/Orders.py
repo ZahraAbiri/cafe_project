@@ -6,11 +6,11 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import session, relationship, backref
 
 from core.db_manager import engine
+from models.Menu_items import Menu_item
 
 base = declarative_base()
 session = session.sessionmaker(bind=engine)()
-from models.Category import Categories
-from models.Tables import Tables
+
 
 
 class Orders(base):
@@ -19,9 +19,8 @@ class Orders(base):
     number = Column('number', Integer)
     status = Column('status', String(50))
     date = Column('date', Date)
-    category = Column('category_id', Integer, ForeignKey(Categories._id), nullable=True)
-    table_parent = relationship("Tables", backref=backref("orders", uselist=False))
-    tbl_id = Column('table_id', Integer, ForeignKey(Tables._id), nullable=True)
 
 
 base.metadata.create_all(engine)
+
+

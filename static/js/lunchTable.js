@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     function StaffMember(name, discountPercent) {
         this.name = name;
         this.discountPercent = discountPercent;
@@ -7,7 +8,6 @@ $(document).ready(function () {
 
 // Create yourself again as 'me' with a staff discount of 20%
     var me = new StaffMember("Ceki", 20);
-
 
     var cashRegister = {
         total: 0,
@@ -119,9 +119,11 @@ $(document).ready(function () {
         if (tabid == null) {
             alert("Please select table");
         } else {
-
+            tableId = tabid
             var orders = [];
-            var yemek = $(this).attr("id"); // get the value of attribute id
+            var yemek = $(this).attr("id");
+
+            // get the value of attribute id
             $("#rightpanel #table" + tabid + ".table-result p").append("<span>" + yemek + ",</span>");
 
         }
@@ -140,8 +142,9 @@ $(document).ready(function () {
             var yemek2 = metn.substring(0, letterorders - 1); // cut the last comma
 
             var orders = yemek2.split(",");
-
-
+            localStorage.setItem("orders", orders)
+            localStorage.setItem("tableId", tabid)
+            alert(tabid)
             var count = {};
             orders.forEach(function (i) {
                 count[i] = (count[i] || 0) + 1;
@@ -157,6 +160,8 @@ $(document).ready(function () {
 
             console.log();
             $("#rightpanel .contain #" + tabid + ".table p").html('Sum: ' + (cashRegister.total).toFixed(2) + '');
+
+            localStorage.setItem("sum", (cashRegister.total).toFixed(2))
 
 
         });
@@ -177,3 +182,7 @@ $(document).ready(function () {
 
 
 });
+
+
+
+
