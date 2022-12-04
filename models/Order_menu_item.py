@@ -11,13 +11,15 @@ base = declarative_base()
 session = session.sessionmaker(bind=engine)()
 from models.Menu_items import Menu_item
 from models.Orders import Orders
-
+from models.Tables import Tables
+#
 
 class Order_menu_items(base):
     __tablename__ = 'order_menu_items'
     _id = Column('id', Integer, unique=True, primary_key=True)
-    order_id = Column('order_id', Integer, ForeignKey('orders.order_id'), nullable=True)
-    menu_item_id = Column('menu_item_id', Integer, ForeignKey(Orders._id), nullable=True)
+    menu_item_id = Column('menu_item_id', Integer, ForeignKey(Menu_item._id), nullable=True)
+    order_id = Column('order_id', Integer, ForeignKey(Orders._id), nullable=True)
+    table_id = Column('table_id', Integer, ForeignKey(Tables._id), nullable=True)
     number = Column('number', Integer)
 
 base.metadata.create_all(engine)
