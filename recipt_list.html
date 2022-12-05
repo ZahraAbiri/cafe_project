@@ -11,31 +11,28 @@
 
 <body>
     <div class="container">
-        <div class="row">
-            <div >
-                <h2 >List of exported receipts</h2>
+        <div >
+            <h2 >List of exported receipts</h2>
 
-            </div>
         </div>
     </div>
-    {% if data %}
+
     {% for r in data %}
-        <div class="row">
             <div class="icon-50 pink-bg-alt border-radius-50 ">
-                <i onclick="NewTab()">{{ r._id }}</i>
+                <h4><a href="{{url_for('recipt',r_id=r._id)}}"> {{r._id}}</a></h4>
             </div>
 
-        </div>
     {% endfor %}
-    {% endif %}
-
-      <script>
-          function NewTab() {
-              window.open(
-              "recipt", "_blank");
-          }
 
 
-    </script>
+{#      <script>#}
+{#    onclick="NewTab()"#}
+{#          function NewTab() {#}
+{#              window.open(#}
+{#              "recipt", "_blank");#}
+{#          }#}
+{#      </script>#}
+
+
 </body>
 </html>

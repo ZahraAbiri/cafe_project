@@ -21,19 +21,18 @@
                             <tr>
                                 <td class="content-block">
                                     <h2>Thank you for choosing<br> Northstreet restaurant</h2>
+
                                 </td>
                             </tr>
-
                             <tr>
                                 <td class="content-block">
                                     <table class="invoice">
-                                    {% if data %}
-                                    {% for r in data %}
+
                                         <tbody>
                                         <tr>
 
-                                            <td>Id :{{ r._id }}<br>Number : {{ r.number }}
-                                                <br>Date : {{ r.date }}</td>
+                                            <td>Id :{{ data._id }}<br>Number : {{ data.name }}
+                                                <br>Date : {{ data.date }}</td>
 
                                         </tr>
                                         <tr>
@@ -41,20 +40,14 @@
                                                 <table class="invoice-items">
                                                     <tbody>
                                                     <tr>
-                                                        <td>Service 1</td>
-                                                        <td class="alignright">$ 20.00</td>
+                                                        <td>Service</td>
+                                                        <td class="alignright">{{ data.order_id }}</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>Service 2</td>
-                                                        <td class="alignright">$ 10.00</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Service 3</td>
-                                                        <td class="alignright">$ 6.00</td>
-                                                    </tr>
+
                                                     <tr class="total">
                                                         <td class="alignright" width="80%">Total Price</td>
-                                                        <td class="alignright">$ {{ r.total_price }}</td>
+                                                        <td class="alignright">$ {{ data.total_price }}</td>
+
                                                     </tr>
                                                     </tbody>
 
@@ -62,9 +55,6 @@
 
                                             </td>
                                         </tr>
-
-                                    {% endfor %}
-                                    {% endif %}
 
                                         </tbody>
                                     </table>
@@ -92,6 +82,8 @@
     </div>
 
 </tr>
+
+<h3>{{data._id}}</h3>
 
 </body>
 </html>
