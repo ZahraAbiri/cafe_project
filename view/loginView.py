@@ -10,7 +10,7 @@ def user_log_in():
         result = request.form
         isExsist = find_user(result)
         if isExsist:
-            return redirect('/')
+            return redirect('/tables')
         else:
             return redirect('/user_sign_in')
     else:
