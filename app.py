@@ -13,5 +13,6 @@ from view.menuItemView import add_menu_items,delete_menu_item,update_menu_items
 from  view.signinView import user_sign_in
 from  view.loginView import user_log_in
 from  view.getOrdersView import tables_order,tables_or
+from  view.recieptView import read_recipt,recipt
 
 app.run(debug=True)

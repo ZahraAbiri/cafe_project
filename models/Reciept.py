@@ -38,3 +38,11 @@ def save_orders(order, table, price):
         session.add(Ord_men)
 
     session.commit()
+
+def read_test():
+    rec = session.query(Recipt).all()
+    return rec
+
+def read_recipt(data):
+    recipt1 = session.query(Recipt).filter(Recipt._id == data).first()
+    return recipt1

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt List</title>
+    <link rel="stylesheet"   href="../static/css/recipt_list.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <div >
+            <h2 >List of exported receipts</h2>
+
+        </div>
+    </div>
+
+    {% for r in data %}
+            <div class="icon-50 pink-bg-alt border-radius-50 ">
+                <h4><a href="{{url_for('recipt',r_id=r._id)}}"> {{r._id}}</a></h4>
+            </div>
+
+    {% endfor %}
+
+
+
+
+</body>
+</html>
