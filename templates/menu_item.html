@@ -77,7 +77,9 @@
 
                     <a href="#editEmployeeModal" class="btnSelects btn btn-warning edit" data-toggle="modal"
                        style="color: #182c39">edit</a>
-                    <button class="btnSelect btn btn-danger" data-toggle="modal" id="delete">delete</button>
+
+                    <button class="btnSelect btn btn-danger" data-toggle="modal" id="delete"
+                          ><a href="{{url_for('delete_menu_item',testId=menu._id)}}">delete</a></button>
                 </td>
             </tr>
             {% endfor %}
@@ -89,6 +91,7 @@
         </table>
 
     </div>
+    <button ><a href="http://localhost:5000/casher">go back</a></button>
 </div>
 <!-- add Modal HTML -->
 <div id="addMenuItemModal" class="modal fade">
@@ -116,12 +119,8 @@
                     <div class="form-group">
                         <label for="categories">category</label>
                         <select name="categories" id="categories">
-                            <option value="dinner">Dinner</option>
-                            <option value="lunch">Lunch</option>
-                            <option value="drinks">Drinks</option>
-                            <option value="salads">salad</option>
-                            <option value="breakefast">breakfast</option>
-                            <option value="deserts">deserts</option>
+                            <option value="Food">Food</option>
+                            <option value="Drinks">Drinks</option>
                         </select>
                     </div>
                 </div>
@@ -201,19 +200,23 @@
 
 </script>
 <script>
+    // function testing(c){
+    //     let x=c
+    //     window.location.href="{{url_for('delete_menu_item',testId=x)}}"
+    // }
 
-    $("#myTable").on('click', '.btnSelect', function () {
-        var currentRow = $(this).closest("tr");
-        console.log('lll55555lll')
-        var col2 = currentRow.find("td:eq(1)").text();
-        let data = {
-            id: col2
-        }
-        axios.post("http://localhost:5000/delete_menu_item", data).then((res) => {
-            res.data
-        })
-        var col3;
-    });
+    // $("#myTable").on('click', '.btnSelect', function () {
+    //     var currentRow = $(this).closest("tr");
+    //     console.log('lll55555lll')
+    //     var col2 = currentRow.find("td:eq(1)").text();
+    //     let data = {
+    //         id: col2
+    //     }
+    //     axios.post("http://localhost:5000/delete_menu_item", data).then((res) => {
+    //         res.data
+    //     })
+    //     var col3;
+    // });
     // $("#myTable").on('click', '.btnSelects', function () {
     //     var currentRow = $(this).closest("tr");
     //     col3 = currentRow.find("td:eq(1)").text();

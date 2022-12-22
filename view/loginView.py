@@ -9,9 +9,13 @@ def user_log_in():
     if request.method == 'POST':
         result = request.form
         isExsist = find_user(result)
-        if isExsist:
+        if isExsist == 0:
             return redirect('/tables')
+        elif isExsist == 1:
+            return redirect('/casher')
         else:
             return redirect('/user_sign_in')
     else:
         return render_template('loginPage.html')
+
+

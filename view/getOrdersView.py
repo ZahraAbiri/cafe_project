@@ -31,3 +31,4 @@ def tables_or():
         print(a, b, c)
         save_orders(a, b, c)
     return "ff"
+

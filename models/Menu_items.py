@@ -39,7 +39,7 @@ def select_dinner():
 
 
 def select_lunch():
-    lunch = session.query(Menu_item).filter(Menu_item.category == 2).all()
+    lunch = session.query(Menu_item).filter(Menu_item.category == 4).all()
     return lunch
 
 
@@ -49,7 +49,7 @@ def select_deserts():
 
 
 def select_drink():
-    drink = session.query(Menu_item).filter(Menu_item.category == 4).all()
+    drink = session.query(Menu_item).filter(Menu_item.category == 2).all()
     return drink
 
 

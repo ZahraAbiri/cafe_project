@@ -35,7 +35,9 @@ def find_user(result):
     user = session.query(User).filter(User.username == result.get('userid') ,
                                       User.password == result.get('passw')).first()
 
-    if user is not None:
-        return True
+    if user is not None and user.role=='cashier':
+        return 1
+    elif user is not None:
+        return 0
     else:
-        return False
+        return -1

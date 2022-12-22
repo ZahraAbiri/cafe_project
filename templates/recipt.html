@@ -10,76 +10,87 @@
 </head>
 <body>
 
-    <div class="container" width="600">
-        <div class="content">
-            <table class="main" width="100%">
-                <tbody>
-                <tr>
-                    <td class="content-wrap aligncenter">
-                        <table width="100%">
-                            <tbody>
-                            <tr>
-                                <td class="content-block">
-                                    <h2>Thank you for choosing<br> Northstreet restaurant</h2>
+<div class="container" width="600">
+    <div class="content">
+        <table class="main" width="100%">
+            <tbody>
+            <tr>
+                <td class="content-wrap aligncenter">
+                    <table width="100%">
+                        <tbody>
+                        <tr>
+                            <td class="content-block">
+                                <h2>Thank you for choosing<br> Northstreet restaurant</h2>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="content-block">
-                                    <table class="invoice">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="content-block">
+                                <table class="invoice">
 
-                                        <tbody>
-                                        <tr>
+                                    <tbody>
+                                    <tr>
 
-                                            <td>Id :{{ data._id }}<br>Number : {{ data.name }}
-                                                <br>Date : {{ data.date }}</td>
+                                        <td>Id :{{ data._id }}<br>Number : {{ data.name }}
+                                            <br>Date : {{ data.date }}
+                                        </td>
 
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <table class="invoice-items">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td>Service</td>
-                                                        <td class="alignright">{{ data.order_id }}</td>
-                                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table class="invoice-items">
+                                                <tbody>
+                                                <!--                                                    <tr>-->
+                                                <!--                                                        <td>Service</td>-->
+                                                <!--                                                        <td class="alignright">{{ data.order_id }}</td>-->
+                                                <!--                                                    </tr>-->
+                                                {% for r in dt %}
+                                                <tr class="total">
+                                                    <td class="alignright" style="text-align: left">
+                                                        <div class="row">
+                                                            <div class="col">food name :<span>{{ r[0] }}</span></div>
+                                                            <div class="col"><span>{{ r[1] }}  €</span></div>
+                                                        </div>
 
-                                                    <tr class="total">
-                                                        <td class="alignright" width="80%">Total Price</td>
-                                                        <td class="alignright">$ {{ data.total_price }}</td>
 
-                                                    </tr>
-                                                    </tbody>
+                                                    </td>
+                                                    {% endfor %}
+                                                </tr>
+                                                <tr>
+<!--                                                    <td class="alignright" width="80%">total price : {{dt[2][2]}}</td>-->
 
-                                                </table>
+                                                </tr>
+                                                </tbody>
 
-                                            </td>
-                                        </tr>
+                                            </table>
+                                            <button><a href="http://localhost:5000/casher">go back</a></button>
+                                        </td>
+                                    </tr>
 
-                                        </tbody>
-                                    </table>
+                                    </tbody>
+                                </table>
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
 
-                            <tr>
-                                <td class="content-block">
-                                    Northstreet Restaurant, San Francisco 94102
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                </tbody>
+                        <tr>
+                            <td class="content-block">
+                                Northstreet Restaurant, San Francisco 94102
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="footer">
+            <table width="100%">
             </table>
-            <div class="footer">
-                <table width="100%">
-                </table>
 
-            </div>
         </div>
     </div>
+</div>
 
 </tr>
 
