@@ -98,6 +98,7 @@
 
 <div class="clear"></div>
 <button id="btnn" class="btnselect" onclick="a()">save</button>
+<button ><a href="http://localhost:5000/casher">go back</a></button>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     // let x = {
@@ -123,11 +124,11 @@
             t: tableId,
             p: price
         }
-        alert(JSON.stringify(data))
+
         axios.post("http://localhost:5000/tab", JSON.stringify(data)).then((res) => {
             res.data
         })
-        alert("after")
+
     }
 
 

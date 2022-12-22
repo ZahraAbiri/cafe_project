@@ -144,7 +144,7 @@ $(document).ready(function () {
             var orders = yemek2.split(",");
             localStorage.setItem("orders", orders)
             localStorage.setItem("tableId", tabid)
-            alert(tabid)
+            // alert(tabid)
             var count = {};
             orders.forEach(function (i) {
                 count[i] = (count[i] || 0) + 1;

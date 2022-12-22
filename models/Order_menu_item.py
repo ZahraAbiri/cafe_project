@@ -7,6 +7,7 @@ from sqlalchemy.orm import session, relationship, backref
 
 from core.db_manager import engine
 
+
 base = declarative_base()
 session = session.sessionmaker(bind=engine)()
 from models.Menu_items import Menu_item
@@ -20,6 +21,7 @@ class Order_menu_items(base):
     menu_item_id = Column('menu_item_id', Integer, ForeignKey(Menu_item._id), nullable=True)
     order_id = Column('order_id', Integer, ForeignKey(Orders._id), nullable=True)
     table_id = Column('table_id', Integer, ForeignKey(Tables._id), nullable=True)
+    recipt_id = Column('recipt_id', Integer, nullable=True)
     number = Column('number', Integer)
 
 base.metadata.create_all(engine)

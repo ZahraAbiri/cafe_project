@@ -1,16 +1,13 @@
 # from core.db_manager import base, Column, Integer, String, Date, ForeignKey, engine, relationship, backref
-import psycopg2
-from sqlalchemy import create_engine, ForeignKey
 from sqlalchemy import Column, Integer, String, Date
+from sqlalchemy import text
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import session, relationship, backref
+from sqlalchemy.orm import session
 
 from core.db_manager import engine
-from models.Menu_items import Menu_item
 
 base = declarative_base()
 session = session.sessionmaker(bind=engine)()
-
 
 
 class Orders(base):
@@ -24,3 +21,15 @@ class Orders(base):
 base.metadata.create_all(engine)
 
 
+def get_orders():
+    que = f'SELECT m.name,o.order_id,o.status from  Menu_item m left join Order_menu_items om on m.menu_item_id=om.menu_item_id left join Orders o on o.order_id=om.order_id where m.menu_item_id=om.menu_item_id'
+    sql = text(que)
+    result = engine.execute(sql).all()
+
+    return result
+
+
+def update_order_status(id, status):
+    updateStatus = session.query(Orders).filter(Orders._id == id).first()
+    updateStatus.status = status
+    session.commit()

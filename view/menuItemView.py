@@ -19,13 +19,14 @@ def add_menu_item():
         return render_template('menu_item.html', menu_item=get_menu_item())
 
 
-@app.route('/delete_menu_item', methods=['POST', 'GET'])
-def delete_menu_item():
-    if request.method == 'POST':
-        result = json.loads(request.data.decode('utf-8'))
-        delete_menu_items(result.get('id'))
-        return redirect('/add_menu_item')
-        # return render_template('menu_item.html', menu_item=get_menu_item())
+@app.route('/delete_menu_item/<testId>', methods=['POST', 'GET'])
+def delete_menu_item(testId):
+    print(testId)
+    # if request.method == 'POST':
+    #     result = json.loads(request.data.decode('utf-8'))
+    delete_menu_items(testId)
+    #     return redirect('/add_menu_item')
+    return render_template('menu_item.html', menu_item=get_menu_item())
 
 
 @app.route('/update_menu_item', methods=['POST', 'GET'])
